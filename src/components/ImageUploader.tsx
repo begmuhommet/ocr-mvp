@@ -18,7 +18,7 @@ const ImageUploader: FC<IProps> = props => {
     [file],
   );
 
-  const { getRootProps, getInputProps } = useDropzone({
+  const { getRootProps, getInputProps, isDragActive } = useDropzone({
     accept: { 'image/jpeg': [], 'image/jpg': [], 'image/png': [] },
     onDrop,
   });
@@ -32,7 +32,9 @@ const ImageUploader: FC<IProps> = props => {
     <>
       <div
         {...getRootProps()}
-        className="border-2 border-gray-300 bg-gray-900 text-white rounded-lg transition-all duration-300 p-10 flex flex-col items-center justify-center hover:cursor-pointer hover:bg-zinc-800"
+        className={`border-2 border-gray-300 bg-gray-900 text-white rounded-lg transition-all duration-300 p-10 flex flex-col items-center justify-center hover:cursor-pointer hover:bg-zinc-800 hover:border-dashed ${
+          isDragActive ? 'border-dashed' : ''
+        }`}
       >
         <IoCloudUploadOutline size={30} />
         <input {...getInputProps()} />
